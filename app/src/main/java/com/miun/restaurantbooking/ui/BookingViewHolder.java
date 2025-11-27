@@ -1,0 +1,38 @@
+package com.miun.restaurantbooking.ui;
+
+import android.view.View;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.miun.restaurantbooking.R;
+import com.miun.restaurantbooking.model.Booking;
+import com.miun.restaurantbooking.util.DateFormatter;
+
+/**
+ * ViewHolder for displaying a single booking item.
+ * TODO: Implement binding logic to display booking data in the views
+ */
+public class BookingViewHolder extends RecyclerView.ViewHolder {
+
+    private TextView textCustomerName;
+    private TextView textBookingTime;
+    private TextView textNumberOfGuests;
+
+    public BookingViewHolder(@NonNull View itemView) {
+        super(itemView);
+        // TODO: Initialize all TextViews using itemView.findViewById()
+    }
+
+    /**
+     * Bind booking data to the views.
+     *
+     * @param booking The booking to display
+     */
+    public void bind(Booking booking) {
+        // TODO: Set the data from the booking object to each TextView
+        // Use DateFormatter to format the time nicely
+        // For number of guests: textNumberOfGuests.setText(booking.getNumberOfGuests() + " guests");
+    }
+}

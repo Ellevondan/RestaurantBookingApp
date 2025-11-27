@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- TODO: Design the main screen for displaying today's bookings -->
+<!-- This layout should include:
+     - A title "Today's Bookings" at the top
+     - A RecyclerView to display the list of bookings (ID: @+id/recyclerViewBookings)
+     - A TextView for showing "No bookings today" when list is empty (ID: @+id/textEmptyState)
+     - Optional: A button to view bookings for other dates
+     - Optional: SwipeRefreshLayout for pull-to-refresh functionality
+
+     The RecyclerView should take most of the screen space.
+     The empty state message should be centered and only visible when there are no bookings.
+-->
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,13 +18,11 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <!-- TODO: Add UI components here -->
+    <!-- Example structure:
+         1. Title TextView at the top
+         2. RecyclerView below the title
+         3. Empty state TextView (initially hidden)
+    -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
