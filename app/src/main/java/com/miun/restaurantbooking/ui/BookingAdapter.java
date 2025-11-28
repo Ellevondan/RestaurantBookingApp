@@ -1,12 +1,14 @@
 package com.miun.restaurantbooking.ui;
 
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.miun.restaurantbooking.model.Booking;
+import com.miun.restaurantbooking.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,19 +34,22 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingViewHolder> {
         // TODO: Inflate the item_booking.xml layout
         // Use LayoutInflater.from(parent.getContext()).inflate(R.layout.item_booking, parent, false)
         // Return new BookingViewHolder(view)
-        return null;
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_booking, parent, false);
+        return new BookingViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull BookingViewHolder holder, int position) {
         // TODO: Get the booking at this position
         // Call holder.bind(booking) to display the data
+        Booking booking = bookings.get(position);
+        holder.bind(booking);
     }
 
     @Override
     public int getItemCount() {
         // TODO: Return the size of the bookings list
-        return 0;
+        return bookings.size();
     }
 
     /**
@@ -55,6 +60,12 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingViewHolder> {
     public void setBookings(List<Booking> newBookings) {
         // TODO: Update the bookings list
         // Call notifyDataSetChanged() to refresh the RecyclerView
+        bookings.clear();
+
+        if (newBookings != null) {
+            bookings.addAll(newBookings);
+        }
+        notifyDataSetChanged();
     }
 
     /**
@@ -63,5 +74,7 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingViewHolder> {
     public void clearBookings() {
         // TODO: Clear the bookings list
         // Call notifyDataSetChanged() to refresh the RecyclerView
+        bookings.clear();
+        notifyDataSetChanged();
     }
 }
