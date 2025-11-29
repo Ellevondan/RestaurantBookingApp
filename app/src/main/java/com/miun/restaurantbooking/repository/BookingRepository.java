@@ -9,6 +9,7 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Repository class that handles data operations for bookings.
@@ -39,10 +40,25 @@ public class BookingRepository {
      */
     public void getTodaysBookings(BookingCallback callback) {
         if (USE_DUMMY_DATA) {
-            // TODO: Get dummy bookings and call callback.onSuccess()
+            List<Booking> dummyBookings = DummyBookingProvider.getTodaysBookings();
+            callback.onSuccess(dummyBookings);
         } else {
-            // TODO: Make real API call using apiService.getTodaysBookings()
-            // Use Retrofit's enqueue() method with a Callback
+            // API
+            Call<List<Booking>> call = apiService.getTodaysBookings();
+            call.enqueue(new Callback<List<Booking>>() {
+                @Override
+                public void onResponse(Call<List<Booking>> call, Response<List<Booking>> response) {
+                    if (response.isSuccessful() && response.body() != null) {
+                        callback.onSuccess(response.body());
+                    } else {
+                        callback.onError("Failed to fetch bookings: " + response.code());
+                    }
+                }
+                @Override
+                public void onFailure(Call<List<Booking>> call, Throwable t) {
+                    callback.onError("Network error: " + t.getMessage());
+                }
+            });
         }
     }
 
@@ -55,10 +71,26 @@ public class BookingRepository {
      */
     public void getBookingsForDate(String date, BookingCallback callback) {
         if (USE_DUMMY_DATA) {
-            // TODO: Get dummy bookings for date and call callback.onSuccess()
+            List<Booking> dummyBookings = DummyBookingProvider.getBookingsForDate(date);
+            callback.onSuccess(dummyBookings);
         } else {
-            // TODO: Make real API call using apiService.getBookingsForDate(date)
-            // Use Retrofit's enqueue() method with a Callback
+            // API
+            Call<List<Booking>> call = apiService.getBookingsForDate(date);
+            call.enqueue(new Callback<List<Booking>>() {
+                @Override
+                public void onResponse(Call<List<Booking>> call, Response<List<Booking>> response) {
+                    if (response.isSuccessful() && response.body() != null) {
+                        callback.onSuccess(response.body());
+                    } else {
+                        callback.onError("Failed to fetch bookings for date: " + response.code());
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<List<Booking>> call, Throwable t) {
+                    callback.onError("Network error: " + t.getMessage());
+                }
+            });
         }
     }
 
