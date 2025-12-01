@@ -12,6 +12,8 @@ public class ApiClient {
     // TODO: Replace this placeholder URL with the actual backend server URL
     private static final String BASE_URL = "http://10.0.2.2:8080/"; // Android emulator localhost
 
+
+
     private static Retrofit retrofit = null;
 
     /**
@@ -26,7 +28,16 @@ public class ApiClient {
         // If retrofit is null, create new Retrofit.Builder()
         // Set base URL, add GsonConverterFactory, and build
         // Return the retrofit instance
-        return null;
+
+        if(retrofit == null){
+            retrofit = new Retrofit.Builder()
+                    .baseUrl(BASE_URL)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+        }
+
+        // returnera samma instans varje gång
+        return retrofit;
     }
 
     /**
@@ -36,6 +47,7 @@ public class ApiClient {
      */
     public static BookingApiService getBookingApiService() {
         // TODO: Use getClient().create(BookingApiService.class) to return the service
-        return null;
+        //Done : skapar en implementation av interface BookingApiSerice
+        return getClient().create(BookingApiService.class);
     }
 }
