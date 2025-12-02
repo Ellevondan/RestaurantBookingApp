@@ -23,6 +23,9 @@ public class BookingViewHolder extends RecyclerView.ViewHolder {
     public BookingViewHolder(@NonNull View itemView) {
         super(itemView);
         // TODO: Initialize all TextViews using itemView.findViewById()
+        textCustomerName = itemView.findViewById(R.id.textCustomerName);
+        textBookingTime = itemView.findViewById(R.id.textBookingTime);
+        textNumberOfGuests = itemView.findViewById(R.id.textNumberOfGuests);
     }
 
     /**
@@ -31,6 +34,10 @@ public class BookingViewHolder extends RecyclerView.ViewHolder {
      * @param booking The booking to display
      */
     public void bind(Booking booking) {
+        textCustomerName.setText(booking.getCustomerName());
+        String formattedTime = DateFormatter.formatTime(booking.getDateTime());
+        textBookingTime.setText(formattedTime);
+        textNumberOfGuests.setText(booking.getNumberOfGuests() + "guests");
         // TODO: Set the data from the booking object to each TextView
         // Use DateFormatter to format the time nicely
         // For number of guests: textNumberOfGuests.setText(booking.getNumberOfGuests() + " guests");
