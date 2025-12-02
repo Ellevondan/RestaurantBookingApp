@@ -1,28 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- TODO: Design a card layout for displaying a single booking -->
-<!-- This layout should show:
-     - Table number (large and prominent)
-     - Customer name
-     - Booking time
-     - Number of guests
-
-     Use CardView as the root element for a nice card appearance.
-     Add appropriate IDs for each TextView so they can be referenced in BookingViewHolder.
-
-     Suggested IDs:
-     - @+id/textTableNumber
-     - @+id/textCustomerName
-     - @+id/textBookingTime
-     - @+id/textNumberOfGuests
--->
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    app:cardCornerRadius="8dp"
-    app:cardElevation="4dp">
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginVertical="8dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="4dp"
+    app:cardBackgroundColor="@android:color/white">
 
-    <!-- TODO: Add LinearLayout or ConstraintLayout here with TextViews for booking info -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp"
+        android:foreground="?attr/selectableItemBackground">
 
+        <!-- Dekorativ "Status"-linje till vänster -->
+        <View
+            android:id="@+id/statusStrip"
+            android:layout_width="6dp"
+            android:layout_height="0dp"
+            android:background="#4CAF50"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <!-- Bordsnummer (stor box till höger) -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/tableCard"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="16dp"
+            app:cardBackgroundColor="#E8F5E9"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="0dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="BORD"
+                    android:textColor="#2E7D32"
+                    android:textSize="10sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textTableNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#1B5E20"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    tools:text="5" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Tid (stor och tydlig) -->
+
+        <!-- Kundnamn -->
+        <TextView
+            android:id="@+id/textBookingTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
+            android:textColor="#263238"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@id/tableCard"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@id/statusStrip"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="19:00" />
+
+        <TextView
+            android:id="@+id/textCustomerName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="16dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="#546E7A"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@id/statusStrip"
+            app:layout_constraintTop_toBottomOf="@id/textBookingTime"
+            app:layout_constraintEnd_toStartOf="@id/tableCard"
+            tools:text="Anna Andersson" />
+
+        <!-- Antal gäster (med ikon) -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="16dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:background="#F5F5F5"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="4dp"
+            app:layout_constraintTop_toBottomOf="@id/textCustomerName"
+            app:layout_constraintStart_toEndOf="@id/statusStrip"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@android:drawable/ic_menu_myplaces"
+                app:tint="#78909C" />
+
+            <TextView
+                android:id="@+id/textNumberOfGuests"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:textColor="#78909C"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                tools:text="4 gäster" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
