@@ -17,6 +17,7 @@ import com.miun.restaurantbooking.util.DateFormatter;
 public class BookingViewHolder extends RecyclerView.ViewHolder {
 
     private TextView textCustomerName;
+    private TextView textPhoneNumber;
     private TextView textBookingTime;
     private TextView textNumberOfGuests;
     private TextView textTableNumber;
@@ -26,6 +27,7 @@ public class BookingViewHolder extends RecyclerView.ViewHolder {
         super(itemView);
         // TODO: Initialize all TextViews using itemView.findViewById()
         textCustomerName = itemView.findViewById(R.id.textCustomerName);
+        textPhoneNumber = itemView.findViewById(R.id.textPhoneNumber);
         textBookingTime = itemView.findViewById(R.id.textBookingTime);
         textNumberOfGuests = itemView.findViewById(R.id.textNumberOfGuests);
         textTableNumber = itemView.findViewById(R.id.textTableNumber);
@@ -38,6 +40,7 @@ public class BookingViewHolder extends RecyclerView.ViewHolder {
      */
     public void bind(Booking booking) {
         textCustomerName.setText(booking.getCustomerName());
+        textPhoneNumber.setText(booking.getPhoneNumber());
         String formattedTime = DateFormatter.formatTime(booking.getDateTime());
         textBookingTime.setText(formattedTime);
         textNumberOfGuests.setText(booking.getNumberOfGuests() + " gäster");

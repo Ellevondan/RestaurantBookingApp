@@ -6,6 +6,7 @@ package com.miun.restaurantbooking.model;
 public class Booking {
     private Long bookingId;
     private String customerName;
+    private String phoneNumber;
     private int tableNumber;
     private String dateTime;  // ISO 8601 format: "2025-11-27T18:30:00"
     private int numberOfGuests;
@@ -21,13 +22,15 @@ public class Booking {
      *
      * @param bookingId      Unique identifier for the booking
      * @param customerName   Name of the customer who made the booking
+     * @param phoneNumber    Phone number of the customer
      * @param tableNumber    Table number assigned to this booking
      * @param dateTime       Date and time of the booking in ISO 8601 format
      * @param numberOfGuests Number of guests for this booking
      */
-    public Booking(Long bookingId, String customerName, int tableNumber, String dateTime, int numberOfGuests) {
+    public Booking(Long bookingId, String customerName, String phoneNumber, int tableNumber, String dateTime, int numberOfGuests) {
         this.bookingId = bookingId;
         this.customerName = customerName;
+        this.phoneNumber = phoneNumber;
         this.tableNumber = tableNumber;
         this.dateTime = dateTime;
         this.numberOfGuests = numberOfGuests;
@@ -69,6 +72,24 @@ public class Booking {
      */
     public void setCustomerName(String customerName) {
         this.customerName = customerName;
+    }
+
+    /**
+     * Get the phone number
+     *
+     * @return the customer's phone number
+     */
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    /**
+     * Set the phone number
+     *
+     * @param phoneNumber the customer's phone number
+     */
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     /**
@@ -135,6 +156,7 @@ public class Booking {
         return "Booking{" +
                 "bookingId=" + bookingId +
                 ", customerName='" + customerName + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
                 ", tableNumber=" + tableNumber +
                 ", dateTime='" + dateTime + '\'' +
                 ", numberOfGuests=" + numberOfGuests +

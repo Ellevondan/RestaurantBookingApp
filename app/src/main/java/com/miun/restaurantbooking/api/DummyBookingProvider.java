@@ -33,6 +33,24 @@ public class DummyBookingProvider {
             "Helena Lundgren"
     };
 
+    private static final String[] PHONE_NUMBERS = {
+            "070-123 45 67",
+            "073-987 65 43",
+            "076-234 56 78",
+            "070-456 78 90",
+            "073-678 90 12",
+            "076-890 12 34",
+            "070-345 67 89",
+            "073-567 89 01",
+            "076-789 01 23",
+            "070-901 23 45",
+            "073-012 34 56",
+            "076-234 45 67",
+            "070-456 67 89",
+            "073-678 89 01",
+            "076-890 01 23"
+    };
+
     private static final int[] TABLE_NUMBERS = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
     private static final int[] GUEST_COUNTS = {2, 2, 3, 4, 4, 5, 6};
     private static final String[] BOOKING_TIMES = {
@@ -82,6 +100,7 @@ public class DummyBookingProvider {
 
         for (int i = 0; i < numberOfBookings; i++) {
             String customerName = CUSTOMER_NAMES[random.nextInt(CUSTOMER_NAMES.length)];
+            String phoneNumber = PHONE_NUMBERS[random.nextInt(PHONE_NUMBERS.length)];
             int tableNumber = TABLE_NUMBERS[random.nextInt(TABLE_NUMBERS.length)];
             String time = BOOKING_TIMES[random.nextInt(BOOKING_TIMES.length)];
             int numberOfGuests = GUEST_COUNTS[random.nextInt(GUEST_COUNTS.length)];
@@ -100,6 +119,7 @@ public class DummyBookingProvider {
             Booking booking = new Booking(
                     bookingIdCounter++,
                     customerName,
+                    phoneNumber,
                     tableNumber,
                     dateTime,
                     numberOfGuests
@@ -125,6 +145,7 @@ public class DummyBookingProvider {
         return new Booking(
                 id,
                 CUSTOMER_NAMES[0],
+                PHONE_NUMBERS[0],
                 TABLE_NUMBERS[0],
                 today.toString() + "T18:00:00",
                 4
