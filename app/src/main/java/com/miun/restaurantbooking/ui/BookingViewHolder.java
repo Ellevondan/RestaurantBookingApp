@@ -19,6 +19,8 @@ public class BookingViewHolder extends RecyclerView.ViewHolder {
     private TextView textCustomerName;
     private TextView textBookingTime;
     private TextView textNumberOfGuests;
+    private TextView textTableNumber;
+
 
     public BookingViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -26,6 +28,7 @@ public class BookingViewHolder extends RecyclerView.ViewHolder {
         textCustomerName = itemView.findViewById(R.id.textCustomerName);
         textBookingTime = itemView.findViewById(R.id.textBookingTime);
         textNumberOfGuests = itemView.findViewById(R.id.textNumberOfGuests);
+        textTableNumber = itemView.findViewById(R.id.textTableNumber);
     }
 
     /**
@@ -37,7 +40,9 @@ public class BookingViewHolder extends RecyclerView.ViewHolder {
         textCustomerName.setText(booking.getCustomerName());
         String formattedTime = DateFormatter.formatTime(booking.getDateTime());
         textBookingTime.setText(formattedTime);
-        textNumberOfGuests.setText(booking.getNumberOfGuests() + "guests");
+        textNumberOfGuests.setText(booking.getNumberOfGuests() + " gäster");
+        textTableNumber.setText(String.valueOf(booking.getTableNumber()));
+
         // TODO: Set the data from the booking object to each TextView
         // Use DateFormatter to format the time nicely
         // For number of guests: textNumberOfGuests.setText(booking.getNumberOfGuests() + " guests");

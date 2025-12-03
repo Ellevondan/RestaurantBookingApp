@@ -21,7 +21,7 @@ import java.util.List;
 /**
  * Main activity that displays today's bookings.
  */
-public class MainActivity extends AppCompatActivity {
+public class  MainActivity extends AppCompatActivity {
 
 
     private RecyclerView recyclerView;
@@ -42,13 +42,34 @@ public class MainActivity extends AppCompatActivity {
 
         // TODO: Initialize views
 
+        // Initialize RecyclerView
+        recyclerView = findViewById(R.id.recyclerViewBookings);
+
+        // Initialize empty state TextView
+        emptyStateText = findViewById(R.id.textEmptyState);
+
+
         // TODO: Initialize repository
+        // Initialize repository
+        repository = new BookingRepository();
 
         // TODO: Setup RecyclerView
+        // Create the adapter
+        adapter = new BookingAdapter();
 
+        // Set a layout manager for vertical scrolling
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        // Attach the adapter to the RecyclerView
+        recyclerView.setAdapter(adapter);
         // TODO: Load today's bookings
+        // Load today's bookings
+        loadTodaysBookings();
 
     }
+
+
+
 
     /**
      * Load and display today's bookings.
@@ -57,6 +78,23 @@ public class MainActivity extends AppCompatActivity {
         // TODO: Call repository.getTodaysBookings() with a callback
         // In onSuccess: Update adapter with bookings, show/hide empty state
         // In onError: Show error message with Toast
+        repository.getTodaysBookings(new BookingRepository.BookingCallback() {
+            @Override
+            public void onSuccess(List<Booking> bookings) {
+                if (bookings.isEmpty()) {
+                    showEmptyState(true);
+                } else {
+                    showEmptyState(false);
+                    adapter.setBookings(bookings);
+                }
+            }
+
+            @Override
+            public void onError(String errorMessage) {
+                Toast.makeText(MainActivity.this, "Error: " + errorMessage, Toast.LENGTH_SHORT).show();
+                showEmptyState(true);
+            }
+        });
     }
 
     /**
@@ -66,5 +104,12 @@ public class MainActivity extends AppCompatActivity {
      */
     private void showEmptyState(boolean show) {
         // TODO: Set visibility of emptyStateText and recyclerView accordingly
+        if (show) {
+            emptyStateText.setVisibility(TextView.VISIBLE);
+            recyclerView.setVisibility(RecyclerView.GONE);
+        } else {
+            emptyStateText.setVisibility(TextView.GONE);
+            recyclerView.setVisibility(RecyclerView.VISIBLE);
+        }
     }
 }
