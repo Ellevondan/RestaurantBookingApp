@@ -21,7 +21,7 @@ public class BookingRepository {
     /**
      * Toggle this to switch between dummy data and real API.
      */
-    private static final boolean USE_DUMMY_DATA = true;
+    private static final boolean USE_DUMMY_DATA = false;
 
     private final BookingApiService apiService;
 

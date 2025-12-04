@@ -10,7 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ApiClient {
 
     // TODO: Replace this placeholder URL with the actual backend server URL
-    private static final String BASE_URL = "http://10.0.2.2:8080/"; // Android emulator localhost
+    private static final String BASE_URL = "http://10.0.2.2:8080/demo-1.0-SNAPSHOT/"; // Android emulator localhost
 
 
 

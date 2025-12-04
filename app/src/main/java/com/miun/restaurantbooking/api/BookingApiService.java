@@ -17,11 +17,10 @@ public interface BookingApiService {
 
     /**
      * Get all bookings for today.
-     * TODO: Update endpoint path when backend is ready
      *
      * @return Call containing list of today's bookings
      */
-    @GET("api/bookings/today")
+    @GET("api/getTodaysBookings?date=2025-01-01")
     Call<List<Booking>> getTodaysBookings();
 
     /**
@@ -31,6 +30,6 @@ public interface BookingApiService {
      * @param date Date string in format YYYY-MM-DD
      * @return Call containing list of bookings for the specified date
      */
-    @GET("api/bookings/date/{date}")
+    @GET("api/getTodaysBookings?date=/{date}")
     Call<List<Booking>> getBookingsForDate(@Path("date") String date);
 }

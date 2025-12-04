@@ -1,14 +1,27 @@
 package com.miun.restaurantbooking.model;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Represents a table booking at the restaurant.
  */
 public class Booking {
+    @SerializedName("id")
     private Long bookingId;
+
+    @SerializedName("name")
     private String customerName;
+
+    @SerializedName("phoneNumber")
     private String phoneNumber;
+
+    @SerializedName("tableNum")
     private int tableNumber;
-    private String dateTime;  // ISO 8601 format: "2025-11-27T18:30:00"
+
+    @SerializedName("dateTime")
+    private String dateTime;
+
+    @SerializedName("numberOfPeople")
     private int numberOfGuests;
 
     /**
